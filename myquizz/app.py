@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+import os
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quizzes.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///quizzes.db')
 db = SQLAlchemy(app)
 
 class Quiz(db.Model):
