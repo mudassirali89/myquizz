@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participate in Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .quiz-container { max-width: 600px; margin: 0 auto; padding: 1em; }
+        .question { margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>{{ quiz.name }}</h1>
+        <form id="participateQuizForm" method="post">
+            {% for question in questions %}
+                <div class="question">
+                    <label>{{ question.name }}</label>
+                    {% set options = question.options.split(',') %}
+                    {% for option in options %}
+                        <div>
+                            <input type="radio" name="question_{{ question.id }}" value="{{ option }}" required> {{ option }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
