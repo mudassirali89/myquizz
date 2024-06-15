@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participate in Quiz</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0; /* Remove default body margins for better control */
+}
+
+.quiz-container {
+  max-width: 600px;
+  margin: 20px auto; /* Add some spacing around the quiz */
+  padding: 1.5em;
+  border: 1px solid #ddd; /* Subtle border for definition */
+  border-radius: 4px; /* Rounded corners for a softer look */
+  background-color: #f5f5f5; /* Light background for better readability */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1em; /* Consistent spacing with questions */
+}
+
+.question {
+  margin-bottom: 1em;
+  padding-bottom: 0.5em; /* Add some space below questions */
+  border-bottom: 1px dotted #ccc; /* Dotted line to separate questions visually */
+}
+
+.question label {
+  display: block; /* Display label on a new line for radio buttons */
+  margin-bottom: 0.5em;
+  font-weight: bold; /* Distinguish questions from options */
+}
+
+input[type="radio"] {
+  margin-right: 0.5em; /* Space between radio buttons and options */
+}
+
+label, input[type="radio"] {
+  cursor: pointer; /* Indicate interactive radio buttons */
+}
+
+button[type="submit"] {
+  display: block; /* Display submit button on a new line */
+  margin: 1em auto; /* Center the button horizontally */
+  padding: 0.8em 1.5em;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50; /* Green for positive action */
+  color: white;
+  font-size: 16px;
+  cursor: pointer; /* Indicate clickable button */
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41; /* Darker green on hover for feedback */
+}
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>{{ quiz.name }}</h1>
+        <form id="participateQuizForm" method="post">
+            {% for question in questions %}
+                <div class="question">
+                    <label>{{ question.name }}</label>
+                    {% set options = question.options.split(',') %}
+                    {% for option in options %}
+                        <div>
+                            <input type="radio" name="question_{{ question.id }}" value="{{ option }}" required> {{ option }}
+                        </div
+
+>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
